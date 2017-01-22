@@ -1,3 +1,8 @@
+projectManager 
+React JS Crash Course
+https://www.youtube.com/watch?v=A71aqufiNtQ
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
