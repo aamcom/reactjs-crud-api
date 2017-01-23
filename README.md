@@ -2,6 +2,10 @@ projectManager
 React JS Crash Course
 https://www.youtube.com/watch?v=A71aqufiNtQ
 
++Ajout Appel Api ext 
+Affichage Liste projets
+Affichage Liste Reservations
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 

@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import $ from 'jquery';
 import Projects from './Components/Projects';
 import AddProject from './Components/AddProject';
+import Reservations from './Components/Reservations';
 import './App.css';
 
 class App extends Component {
@@ -10,7 +11,8 @@ class App extends Component {
     super();
     this.state = {
       projects: [],
-      todos: []
+      todos: [],
+      reservations: []
     }
   }
 
@@ -30,6 +32,21 @@ getTodos(){
   })
 }
 
+getReservations(){
+  $.ajax({
+    url:'http://api.cityscoot.eu/api/v3/reservation/list?apikey=Micagt8UwcRlar7F',
+    dataType:'json',
+    cache: false,
+    success: function(data) {
+      this.setState({reservations: data.reservations},()=>{
+        console.log("getReservations",this.state)
+      })
+    }.bind(this),
+    error: (xhr, status, err) => {
+        console.error(err);
+    }
+  })
+}
 getProjects(){
   this.setState({projects:[
         {
@@ -56,11 +73,12 @@ getProjects(){
 }
 componentWillMount(){
   this.getProjects();
-  this.getTodos();
+//  this.getTodos();
+  this.getReservations();
 }
 
 componentDidMount(){
-  this.getTodos();
+//  this.getTodos();
 }
 
 handleAddProject(project){
@@ -81,6 +99,10 @@ handleAddProject(project){
       <div className="App">
         <AddProject addProject={this.handleAddProject.bind(this)}></AddProject>
         <Projects projects={this.state.projects} onDelete={this.handleDeleteProject.bind(this)}/>
+        <hr/>
+        <Reservations reservations={this.state.reservations}/> {/*}
+        <Reservations reservations={this.state.reservations} onDelete={this.handleDeleteReservation.bind(this)}/>
+        */}
       </div>
     );
   }
