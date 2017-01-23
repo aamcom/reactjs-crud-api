@@ -47,6 +47,7 @@ getReservations(){
     }
   })
 }
+
 getProjects(){
   this.setState({projects:[
         {
@@ -75,6 +76,7 @@ componentWillMount(){
   this.getProjects();
 //  this.getTodos();
   this.getReservations();
+  //this.getResaNb();
 }
 
 componentDidMount(){

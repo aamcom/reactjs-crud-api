@@ -8,6 +8,7 @@ deleteReservation(id){
 }
   render() {
     let reservationItems;
+    let resaNb = this.props.reservations.length;
     if(this.props.reservations){
         reservationItems = this.props.reservations
             .map(reservation => {
@@ -20,7 +21,7 @@ deleteReservation(id){
     //console.log(this.props);
     return (
       <div className="Reservations">
-        <h3>LAtest reservation</h3>
+        <h3>Latest reservation ({resaNb})</h3>
         {reservationItems}
       </div>
     );
