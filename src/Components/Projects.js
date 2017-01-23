@@ -26,5 +26,10 @@ deleteProject(id){
     );
   }
 }
-
+/*
+Projects.propTypes = {
+    projects: React.propTypes.array,
+    onDelete: React.propTypes.func
+}
+*/
 export default Projects;

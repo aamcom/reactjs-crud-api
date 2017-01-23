@@ -1,19 +1,36 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
+import $ from 'jquery';
 import Projects from './Components/Projects';
 import AddProject from './Components/AddProject';
-
 import './App.css';
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      projects: []
+      projects: [],
+      todos: []
     }
   }
 
-componentWillMount(){
+getTodos(){
+  $.ajax({
+    url:'https://jsonplaceholder.typicode.com/todos',
+    dataType:'json',
+    cache: false,
+    success: function(data) {
+      this.setState({todos: data},()=>{
+        console.log("getodos",this.state)
+      })
+    }.bind(this),
+    error: (xhr, status, err) => {
+        console.error(err);
+    }
+  })
+}
+
+getProjects(){
   this.setState({projects:[
         {
           id: uuid.v4(),
@@ -35,9 +52,18 @@ componentWillMount(){
           title: 'Geoloc meet',
           category: 'Mobile Developpment'
         }
-  ]})
+  ]});
 }
-  handleAddProject(project){
+componentWillMount(){
+  this.getProjects();
+  this.getTodos();
+}
+
+componentDidMount(){
+  this.getTodos();
+}
+
+handleAddProject(project){
     //console.log(project)
     let projects = this.state.projects;
     projects.push(project);
